@@ -1,3 +1,5 @@
+if(foternameallow == 'fotter')
+{
 var ueres_id = null;
 function onlodergetusersids() {
 
@@ -229,7 +231,7 @@ function socialtagsandcontant() {
     // Social file end
 }
 
-
+}
 
 // Listen for input event on numInput.
 // Reusable Function to Enforce MaxLength

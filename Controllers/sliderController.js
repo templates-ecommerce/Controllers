@@ -1,4 +1,5 @@
-
+if(foternameallow == 'fotter')
+{
 function sliderheroactive() {
     // Slider allow start
     try {
@@ -43,4 +44,5 @@ function sliderheroactive() {
         console.log(error)
     }
     // Slider allow end
+}
 }

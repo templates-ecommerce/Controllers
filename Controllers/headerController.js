@@ -1,3 +1,5 @@
+if(foternameallow == 'fotter')
+{
 // Get the current user:
 const user = netlifyIdentity.currentUser();
 // var json=null;
@@ -170,3 +172,4 @@ function add_delete(id, o) {
 
 }
 
+}

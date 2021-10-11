@@ -1,4 +1,5 @@
-var pagenames = "checkout";
+if(pagenames == "checkout")
+{
 var getipaddress;
 function getIP(json) {
     getipaddress = json.ip;
@@ -593,3 +594,6 @@ function phonevalidcheck() {
 }
 
 document.getElementById("emai").value = email;
+
+
+}

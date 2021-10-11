@@ -1,3 +1,5 @@
+if(pagesnames == 'product')
+{
 var toprice = 0;
 function Check(id, title, dec, price, img, qty) {
 
@@ -107,4 +109,5 @@ function Check(id, title, dec, price, img, qty) {
 
 
 
+}
 }

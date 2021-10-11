@@ -1,4 +1,5 @@
-var pagenames = "contact";
+if(pagenames == "contact")
+{
 function sendEmail()
 {
     try {
@@ -123,3 +124,4 @@ else{
 
 
 
+}

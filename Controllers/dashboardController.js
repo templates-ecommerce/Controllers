@@ -1,4 +1,5 @@
-var pagenames = "dashboard";
+if(pagenames == "dashboard")
+{
 var u_id;
 
 $(document).ready(function () {
@@ -86,3 +87,5 @@ function onloaderdashboard() {
   }
 }
 // Dashboard function end
+
+}

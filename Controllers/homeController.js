@@ -1,5 +1,5 @@
-var pagenames = "Home";
-
+if(pagenames == "Home")
+{
 function sort() {
     var id = $('#pricerageallow').val();
     var content = document.querySelector('#search');
@@ -159,3 +159,4 @@ function onButtonClick() {
 
 
 
+}

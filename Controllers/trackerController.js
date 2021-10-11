@@ -1,4 +1,6 @@
-var pagenames = "track"
+if(pagenames == "track")
+{
+  
 function valueChanged()
   {
       if($('#viewdetails').is(":checked"))   
@@ -119,3 +121,4 @@ function onloadertrack(){
 }
 }
 // tracking function end
+}

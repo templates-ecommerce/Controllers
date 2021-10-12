@@ -1,5 +1,6 @@
 if(pagesnames == 'product')
 {
+  var pagenames = null;
 var toprice = 0;
 function Check(id, title, dec, price, img, qty) {
 

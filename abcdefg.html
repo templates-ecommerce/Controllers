@@ -6,6 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script>
+   var ogTitle = document.createElement('meta');
+   ogTitle.setAttribute('property', 'og:title');
+   ogTitle.content = title
+   document.getElementsByTagName('head')[0].appendChild(ogTitle);
+</script>
 </head>
 <body>
   

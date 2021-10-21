@@ -12,27 +12,20 @@ function sliderheroactive() {
                 if(response.length == 0)
                 {
                     
-                    $("#slider_main_id").remove();
+                    $(".sliders_items_imgs").remove();
                 }
                 else{
-                    $("#slider_main_id").remove();
+                    $(".slider_main_id").remove();
                     
                 }
                 $.each(response, function (index, element) {
 
-                    if (index == 0) {
+                   
                         
-                        imgas += '<div class="carousel-item active">' +
+                        imgas += '<div class="ec-slide-item swiper-slide d-flex">' +
                             '<img class="d-block w-100" src="' + element.src + '">' +
                             '</div>';
-                        
-                    }
-                    else {
-                        
-                        imgas += '<div class="carousel-item">' +
-                            '<img class="d-block w-100" src="' + element.src + '">' +
-                            '</div>';
-                    }
+                    
 
                 });
                 $('#sliders_items_imgs').append(imgas);

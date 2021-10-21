@@ -12,10 +12,10 @@ function sliderheroactive() {
                 if(response.length == 0)
                 {
                     
-                    $(".slider_main_id").remove();
+                    $("#mainslider .slider_main_id").remove();
                 }
                 else{
-                    $(".slider_main_id").remove();
+                    $("#mainslider .slider_main_id").remove();
                     
                 }
                 $.each(response, function (index, element) {

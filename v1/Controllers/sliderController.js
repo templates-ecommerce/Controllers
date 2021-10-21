@@ -12,7 +12,7 @@ function sliderheroactive() {
                 if(response.length == 0)
                 {
                     
-                    $(".sliders_items_imgs").remove();
+                    $(".slider_main_id").remove();
                 }
                 else{
                     $(".slider_main_id").remove();
@@ -20,12 +20,19 @@ function sliderheroactive() {
                 }
                 $.each(response, function (index, element) {
 
-                   
+                    if (index == 0) {
+                        
+                        imgas += '<div class="ec-slide-item swiper-slide d-flex swiper-slide-active">' +
+                            '<img src="' + element.src + '">' +
+                            '</div>';
+                        
+                    }
+                    else {
                         
                         imgas += '<div class="ec-slide-item swiper-slide d-flex">' +
-                            '<img class="d-block w-100" src="' + element.src + '">' +
-                            '</div>';
-                    
+                        '<img src="' + element.src + '">' +
+                        '</div>';
+                    }
 
                 });
                 $('#sliders_items_imgs').append(imgas);

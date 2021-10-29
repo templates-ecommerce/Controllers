@@ -11,14 +11,14 @@ function sendEmail()
     var email = $('#useremail').val();
     var name = $('#username').val();
     if (msg == "") {
-        document.getElementById("errormsges").innerHTML = "Name required";
+        document.getElementById("errormsges").innerHTML = "Message required";
         errorschecks = "error";
     }
     else {
         if (errorschecks == "success") { document.getElementById("errormsges").innerHTML = ""; errorschecks = "success"; }
     }
     if (email == "") {
-        document.getElementById("erroremils").innerHTML = "Address required";
+        document.getElementById("erroremils").innerHTML = "Email required";
         errorschecks = "error";
     } else {
         if (errorschecks == "success") { document.getElementById("erroremils").innerHTML = ""; errorschecks = "success"; }

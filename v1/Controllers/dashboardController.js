@@ -1,5 +1,6 @@
 if(pagenames == "dashboard")
 {
+ 
 var u_id;
 
 $(document).ready(function () {
@@ -8,8 +9,8 @@ $(document).ready(function () {
     logins = JSON.parse(login);
 
     u_id = logins.id;
-
-    console.log(logins)
+    email = logins.email;
+    // console.log(logins)
 
   }
   else {
@@ -26,6 +27,7 @@ var ord = '';
 
 // Dashboard function start
 function onloaderdashboard() {
+  
   try {
     if (pagenames == "dashboard") {
       console.log(AccessKey)
@@ -48,35 +50,74 @@ function onloaderdashboard() {
           )
           if (len > 0) {
             // Read data and create <option >
+            var count=0;
+            var Delivered=0;
+            var subamountset =0;
+            var product=0;
+            product=JSON.parse(response)[0].ProductCount;
             for (var i = 0; i < len; i++) {
               var datas = JSON.parse(response)[i];
+              count=count+1;
               //   console.log(datas)
-              ord += '<tr>';
-              ord += '<td>' + datas.order_key + '</td>';
-              ord += '<td>'+ Intl.NumberFormat().format(parseFloat(datas.total))  + '</td>';
-              
-              if(datas.Shipping_City !=null )
+ 
+                if(count <= 10)
                 {
-                  ord += '<td>' + capitalizeFirstLetter(datas.Shipping_City)+ '</td>';
+                  
+                  ord += '<tr>';
+                  
+                  ord += '<th scope="row"><span>' + datas.order_key + '</th></span>';
+                  if(datas.Shipping_City !=null )
+                    {
+                      ord += '<td><span>' + capitalizeFirstLetter(datas.Shipping_City)+ '</span></td>';
+                    }
+                    else{
+                      ord += '<td><span>' + capitalizeFirstLetter(datas.Billing_City)+ '</span></td>';
+                    }
+                   
+                    ord += '<td><span>'+ capitalizeFirstLetter(datas.status)  + '</span></td>';
+                    ord += '<td><span>' + moment(datas.date_created).format('DD-MM-YYYY') + '</span></td>';
+                    ord += '<td><span>'+ Intl.NumberFormat().format(parseFloat(datas.total))  + '</span></td>';
+                    ord += '<td><a href="' + window.location.origin + '/invoice/?orderid=' + datas.order_key + '" target="_blank" rel="noopener noreferrer"><span>View</span></a></td>';
+                    ord += '</tr>';
                 }
                 else{
-                  ord += '<td>' + capitalizeFirstLetter(datas.Billing_City)+ '</td>';
+                  
+                  ord += '<tr class="hidetrdone" style="display: none;">';
+                  ord += '<th scope="row"><span>' + datas.order_key + '</th></span>';
+                  if(datas.Shipping_City !=null )
+                    {
+                      ord += '<td><span>' + capitalizeFirstLetter(datas.Shipping_City)+ '</span></td>';
+                    }
+                    else{
+                      ord += '<td><span>' + capitalizeFirstLetter(datas.Billing_City)+ '</span></td>';
+                    }
+                    ord += '<td><span>'+ capitalizeFirstLetter(datas.status)  + '</span></td>';
+                    ord += '<td><span>' + moment(datas.date_created).format('DD-MM-YYYY') + '</span></td>';
+                    ord += '<td><span>'+ Intl.NumberFormat().format(parseFloat(datas.total))  + '</span></td>';
+                    ord += '<td><a href="' + window.location.origin + '/invoice/?orderid=' + datas.order_key + '" target="_blank" rel="noopener noreferrer"><span>View</span></a></td>';
+                    ord += '</tr>';
                 }
-
-              ord += '<td>'+ capitalizeFirstLetter(datas.status)  + '</td>';
-              ord += '<td>' + moment(datas.date_created).format('DD-MM-YYYY') + '</td>';
-              ord += '<td><a href="' + window.location.origin + '/invoice/?orderid=' + datas.order_key + '" target="_blank" rel="noopener noreferrer">View</a></td>';
-
-
-              $("#productorder tbody tr").remove();
-              $('#productorder tbody').append(ord);
-
-
+                // Delivered
+             
+             
+                
+              if(capitalizeFirstLetter(datas.status) == "Delivered")
+              {
+                subamountset = subamountset+datas.total;
+                Delivered=1+Delivered;
+              }
               // document.getElementById("abc").innerHTML = name;
 
             }
+            $('#spentcounts').html(Intl.NumberFormat().format(parseFloat(subamountset))+"<span> PKR</span>")
+            $('#ordercounts').text(count)
+            $('#deliveredcounts').text(Delivered)
+            $("#productorder tr").remove();
+            $('#productorder').append(ord);
+            $('#productcount').text(product)
+            // 
           }
-
+          getaddressdas();
         }
       });
 
@@ -87,5 +128,10 @@ function onloaderdashboard() {
   }
 }
 // Dashboard function end
+
+
+function showallorder(){
+  $('.hidetrdone').show();
+}
 
 }

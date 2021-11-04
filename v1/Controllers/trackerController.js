@@ -3,10 +3,19 @@ if(pagenames == "track")
   
 function valueChanged()
   {
-      if($('#viewdetails').is(":checked"))   
-          $("#hidetable").show();
+      if($('#viewdetails').is(":checked"))
+      {
+        $("#hidetable").show();
+        $("#arrowdown").removeClass('fa-arrow-circle-down')
+        $("#arrowdown").addClass('fa-arrow-circle-up')
+      }
+          
       else
+      {
           $("#hidetable").hide();
+          $("#arrowdown").removeClass('fa-arrow-circle-up')
+          $("#arrowdown").addClass('fa-arrow-circle-down')
+      }
   }
 
 
@@ -15,7 +24,7 @@ function valueChanged()
 function onloadertrack(){
     try {
         if (pagenames == "track") {
-          $('#divLoader').show()
+          $('#ec-overlay').show()
           $('#tabrownode tr').remove(); 
           $("#comamountredy").text(0);
     var ord = '';
@@ -37,7 +46,8 @@ function onloadertrack(){
         // console.log(datas[0].Status)
         pamount= datas[0].Delivery_Charges;
         ord += '<tr>';
-                ord += '<td>'+trackids+'</td>';
+                // ord += '<td>'+trackids+'</td>';
+                ord += '<td>' +datas[0].CreatedAt + '</td>';
                 ord += '<td id="comamountredy"></td>';
                 if(datas[0].Shipping_City !=null )
                 {
@@ -48,8 +58,8 @@ function onloadertrack(){
                 }
                 
                 ord += '<td>' + capitalizeFirstLetter(datas[0].Status)+ '</td>';
-                    ord += '<td>' +datas[0].CreatedAt + '</td>';
-                    ord += '<td><label><input type="checkbox" id="viewdetails" onchange="valueChanged()"> View details</label></td>';
+                    
+                    ord += '<td><label><input type="checkbox" style="height:unset!important;width:unset!important;" id="viewdetails" onchange="valueChanged()" HIDDEN><i class="fa fa-arrow-circle-down" id="arrowdown" aria-hidden="true"></i> View details</label></td>';
                                
                               
                                 $('#tabrownode tr').remove(); 
@@ -66,18 +76,18 @@ function onloadertrack(){
         )
         if(len > 0){
           pro += '<tr>';
-            pro += '<th colspan="1">Name</th>';
-            pro += '<th colspan="2">Price</th>';
-            pro += '<th colspan="2">Quantity</th>';
+            pro += '<th colspan="2">Name</th>';
+            pro += '<th colspan="1">Price</th>';
+            pro += '<th colspan="1">Quantity</th>';
             pro += '<th colspan="1">Total amount</th>';
 
             
           for(var i=0; i<len; i++){
             pro += '<tr>';
-              pro += '<td colspan="1">'+productdatas[i].Name+'</td>';
+              pro += '<td colspan="2">'+productdatas[i].Name+'</td>';
   
-              pro += '<td colspan="2">Rs: ' + new Intl.NumberFormat().format(parseFloat(productdatas[i].price)) + '</td>';
-              pro += '<td colspan="2">' + productdatas[i].quantity + '</td>';
+              pro += '<td colspan="1">Rs: ' + new Intl.NumberFormat().format(parseFloat(productdatas[i].price)) + '</td>';
+              pro += '<td colspan="1">' + productdatas[i].quantity + '</td>';
               pro += '<td colspan="1">Rs: ' + new Intl.NumberFormat().format(parseFloat(productdatas[i].price*productdatas[i].quantity)) + '</td>';
               pamount = pamount+productdatas[i].total;         
                               
@@ -93,9 +103,9 @@ function onloadertrack(){
           }
           $("#comamountredy").text(new Intl.NumberFormat().format(parseFloat(pamount)));
         }
-        $('#divLoader').hide()
+        $('#ec-overlay').hide()
       } catch (error) {
-        $('#divLoader').hide()
+        $('#ec-overlay').hide()
           $('#tabrownode tr').remove(); 
           var options = {
             autoClose: true,
@@ -111,14 +121,44 @@ function onloadertrack(){
         toast.configure(options);
     
         toast.error("No order(s) found, please try again");
+        var emt = '<tr>';
+        emt += '<td colspan="6"><img src="https://img.freepik.com/free-photo/empty-miniature-shopping-trolley-near-torn-paper-piece-against-colored-backdrop_23-2147943585.jpg" height="200px" width="100%"/></td>';
+        emt += '</tr>'
+        $('#tabrownode').html(emt);
+
       }
       }
       
  });
 }
 } catch (error) {
-    
+  $('#ec-overlay').hide()
+  $('#tabrownode tr').remove(); 
+  var options = {
+    autoClose: true,
+    progressBar: true,
+    enableSounds: true,
+    sounds: {
+
+        error: "https://res.cloudinary.com/dxfq3iotg/video/upload/v1557233524/success.mp3",
+
+    },
+};
+var toast = new Toasty(options);
+toast.configure(options);
+
+toast.error("No order(s) found, please try again");
+var emt = '<tr>';
+emt += '<td colspan="6"><img src="https://img.freepik.com/free-photo/empty-miniature-shopping-trolley-near-torn-paper-piece-against-colored-backdrop_23-2147943585.jpg" height="200px" width="100%"/></td>';
+emt += '</tr>'
+$('#tabrownode').html(emt);
 }
 }
 // tracking function end
+
+$("#trackid").keyup(function(event) {
+  if (event.keyCode === 13) {
+      $("#trackbtndone").click();
+  }
+});
 }

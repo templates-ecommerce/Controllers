@@ -101,7 +101,7 @@ function GotOrder(Response) {
         }
     }
 
-    window.print();
+   
 }
 
 function getUrlParameter(name, url = window.location.href) {

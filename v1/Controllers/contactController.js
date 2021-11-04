@@ -3,25 +3,40 @@ if(pagenames == "contact")
 function sendEmail()
 {
     try {
-        $('#divLoader').show()
+        $('#ec-overlay').show()
         $("#sendmaildone").attr("disabled", true)
         
         var errorschecks = "success";
+        document.getElementById("erroremils").innerHTML = ""; 
+        document.getElementById("errormsges").innerHTML = "";
+        document.getElementById("errornames").innerHTML = "";
         var msg = $('#message').val();
     var email = $('#useremail').val();
     var name = $('#username').val();
     if (msg == "") {
-        document.getElementById("errormsges").innerHTML = "Name required";
+        document.getElementById("errormsges").innerHTML = "Message required";
         errorschecks = "error";
     }
     else {
         if (errorschecks == "success") { document.getElementById("errormsges").innerHTML = ""; errorschecks = "success"; }
     }
     if (email == "") {
-        document.getElementById("erroremils").innerHTML = "Address required";
+        document.getElementById("erroremils").innerHTML = "Email required";
         errorschecks = "error";
     } else {
-        if (errorschecks == "success") { document.getElementById("erroremils").innerHTML = ""; errorschecks = "success"; }
+        if (errorschecks == "success") { 
+            var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if (!filter.test(email)) {
+                document.getElementById("erroremils").innerHTML = "Please enter correct email format";
+                errorschecks = "error";
+            }
+            else{
+                document.getElementById("erroremils").innerHTML = ""; 
+                errorschecks = "success"; 
+            }
+            
+        
+        }
 
     }
     if (name == "") {
@@ -44,12 +59,13 @@ function sendEmail()
                     'AccessKey': AccessKey,
                     },
                     success: function(response){
+                        console.log(response);
                         if("True" == response)
                         {
                             $('#message').val('');
                             $('#useremail').val('');
                             $('#username').val('');
-                            $('#divLoader').hide()
+                            $('#ec-overlay').hide()
                             var options = {
                                 autoClose: true,
                                 progressBar: true,
@@ -68,7 +84,7 @@ function sendEmail()
                         }
                         else
                         {
-                            $('#divLoader').hide()
+                            $('#ec-overlay').hide()
                             var options = {
                                 autoClose: true,
                                 progressBar: true,
@@ -106,14 +122,14 @@ function sendEmail()
                         
                         toast.error("Request failed");
                         $("#sendmaildone"). attr("disabled", false)
-                        $('#divLoader').hide()
+                        $('#ec-overlay').hide()
                     }
         });
     })
 }
 else{
     $("#sendmaildone"). attr("disabled", false)
-    $('#divLoader').hide()
+    $('#ec-overlay').hide()
 
 }
     } catch (error) {

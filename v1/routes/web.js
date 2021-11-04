@@ -10,7 +10,10 @@ window.addEventListener('storage', async () => {
         if (pagenames == "checkout") {
             load()
         }
-       
+        if (pagenames == "Cartpage") {
+            cardpage()
+        }
+
 
     } catch (error) {
         
@@ -22,6 +25,7 @@ function getusersids() {
     
 }
 $(document).ready(function () {
+    
     try {
         getusersids()
         
@@ -43,6 +47,7 @@ $(document).ready(function () {
                 checkoutsloadallows(AccessKey, subdomain);
                 invoiceonloader();
                 dashboardonloader();
+                Cartpage();
                 // track();
             }
         })
@@ -148,6 +153,20 @@ function track() {
 
 }
 // tracking function end
+
+
+// Cart function start
+function Cartpage() {
+    try {
+        if (pagenames == "Cartpage") {
+            cardpage()
+        }
+    } catch (error) {
+
+    }
+
+}
+// Cart function end
 
 
 function capitalizeFirstLetter(string) {

@@ -50,38 +50,36 @@ function load() {
         json = JSON.parse(items);
         var count = 0;
         toprice = 0;
-        $("#tablaa").html('');
         var products = '';
         for (i = 0; i < json.length; i++) {
             // console.log(json[i]);
             count++;
-            products += '<div class="row pb-1">';
-            // img div start
-            products += '<div class="col-2 align-self-center">';
-            products += '<img class="img-fluid" src="' + json[i].img + '">';
+            products += '<div class="col-sm-12 mb-6">';
+            products += '<div class="ec-product-inner">';
+            products += '<div class="ec-pro-image-outer">';
+            products += '<div class="ec-pro-image">';
+            products += '<div class="image">';
+            products += '<img class="main-image" src="' + json[i].img + '" alt="' + json[i].name + '" />';
             products += '</div>';
-            // img div end
-            products += '<div class="col-10">';
-            products += '<div class="row">';
-
-            products += '<div class="col-4">';
-            products += '<div class="row"><span class="titlealign">' + json[i].name + '</span></div>';
-            products += '<div class="row text-muted"><span class="titlealign">' + json[i].dec + '</span></div>';
-            products += '<div class="row">Rs. ' + new Intl.NumberFormat().format(parseFloat(json[i].price)) + '</div>';
+            products += '</div>';
             products += '</div>';
 
-            products += '<div class="col-4">';
-            products += '<input type="number" class="qty form-control text-center" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" oninput="this.value = Math.abs(this.value)" min="1"  maxlength="3" onkeyup="' + "cartpricechnage(this,'" + json[i].id + "'," + i + "," + json[i].price + ",'checkout')" + '"' + 'onchange="' + "cartpricechnage(this,'" + json[i].id + "'," + i + "," + json[i].price + ",'checkout')" + '" value="' + json[i].quantity + '">'
-            products += '</div>';
+            products += '<div class="ec-pro-content">';
+            products += '<h5 class="ec-pro-title"><a href="'+window.location.origin+'/products/'+json[i].id+'" target="_blank">' + json[i].name + '</a></h5>';
+            products += '<span class="ec-price">';
+            products += '<span class="new-price">PKR: ' + new Intl.NumberFormat().format(parseFloat(json[i].price)) + '</span>';
+            products += '</span>';
+         
+            products += '<div class="qty-plus-minus"><input type="number" class="qty-input" style="width: 80px;height:30px;border: 1px solid #eeeeee;" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" oninput="this.value = Math.abs(this.value)" min="1"  maxlength="3" onkeyup="' + "cartpricechnage(this,'" + json[i].id + "'," + i + "," + json[i].price + ",'checkout')" + '"' + 'onchange="' + "cartpricechnage(this,'" + json[i].id + "'," + i + "," + json[i].price + ",'checkout')" + '" value="' + json[i].quantity + '">';
+            products +='<a href="#" onclick="add_delete('+"'" + json[i].id + "'"+ ',this)">&nbsp;&nbsp;<i class="ecicon eci-trash-o" style="font-size: 20px;"></i></a></div>'
 
-            products += '<div class="col-4">';
-            products += '<button class="btn btn-outline-danger btn-icon" style="padding: 10px 15px;" onclick="add_delete(' +
-                "'" + json[i].id + "'"
-                + ',this)"><i class="fa fa-trash" aria-hidden="true"></i></button>';
             products += '</div>';
+            // products += ''
             products += '</div>';
+            
             products += '</div>';
-            products += '</div>';
+            // products += '<button class="btn btn-outline-danger btn-icon" style="padding: 10px 15px;" onclick="add_delete(' +"'" + json[i].id + "'"+ ',this)"><i class="fa fa-trash" aria-hidden="true"></i></button>';
+            
             var price = parseFloat(json[i].price * json[i].quantity)
             toprice = parseFloat(toprice + price);
         };
@@ -199,7 +197,7 @@ function validate() {
 }
 
 function adddata() {
-    $('#divLoader').show()
+    $('#ec-overlay').show()
     var Line_Items = [];
     totalamounts = 0;
     items = localStorage.getItem("itemsArray");
@@ -330,7 +328,7 @@ function adddata() {
             // alert(dataResult)
             console.log(dataResult);
             localStorage.removeItem('itemsArray')
-            $('#divLoader').hide()
+            $('#ec-overlay').hide()
             window.location.href = window.location.origin + '/invoice/?orderid=' + dataResult;
 
         }
@@ -338,7 +336,7 @@ function adddata() {
 }
     
 else{
-    $('#divLoader').hide()
+    $('#ec-overlay').hide()
     var options = {
         autoClose: true,
         progressBar: true,
@@ -356,7 +354,7 @@ else{
 }
 }
 else{
-    $('#divLoader').hide()
+    $('#ec-overlay').hide()
     var options = {
         autoClose: true,
         progressBar: true,
@@ -492,40 +490,6 @@ function onchacity() {
 }
 
 
-function getuseraddress(namedomain, keyaccess) {
-    try {
-        if (pagenames == "checkout") {
-            $.ajax({
-                url: apicon+'/api/ECom/GetLastBillingInfo?CustomerID=' + u_id,
-                method: "GET",
-                headers: {
-                    'SubDomain': namedomain,
-                    'AccessKey': keyaccess,
-                },
-                success: function (response) {
-                    console.log(JSON.parse(response))
-                    var datasjon = JSON.parse(response);
-                    if (datasjon.Table1[0] != null) {
-
-                        document.getElementById("s_name").value = datasjon.Table1[0].name;
-                        document.getElementById("s_address").value = datasjon.Table1[0].address;
-                        $('#s_citys').val(datasjon.Table1[0].city)
-                    }
-
-                    document.getElementById("name").value = datasjon.Table[0].name;
-                    document.getElementById("address").value = datasjon.Table[0].address;
-                    document.getElementById("phone").value = datasjon.Table[0].phone;
-                    $('#citys').val(datasjon.Table[0].city)
-                    document.getElementById("country").value = datasjon.Table[0].country;
-                    document.getElementById("province").value = datasjon.Table[0].province;
-                    onchacity()
-                }
-            });
-        }
-    } catch (error) {
-
-    }
-}
 
 
 

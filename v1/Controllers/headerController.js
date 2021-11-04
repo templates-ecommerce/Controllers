@@ -54,8 +54,8 @@ function cartpricechnage(qty, p_id, i, price,checkrequet) {
         var price = parseFloat(parseFloat(result[i].price) * parseFloat(result[i].quantity))
         toprice = parseFloat(parseFloat(toprice) + parseFloat(price));
     }
-    $('#pricedonefotter').text(new Intl.NumberFormat().format(parseFloat(toprice)));
-    $('#pricedonefotter').text(new Intl.NumberFormat().format(parseFloat(toprice)));
+    $('.pricedonefotter').text(new Intl.NumberFormat().format(parseFloat(toprice)));
+    $('.pricedonefotter').text(new Intl.NumberFormat().format(parseFloat(toprice)));
     if (checkrequet == "checkout") {
         sutotle = toprice;
         subtot = toprice;
@@ -75,6 +75,23 @@ function cartpricechnage(qty, p_id, i, price,checkrequet) {
             onchacity();
         }
     }
+    
+    if (checkrequet == "cart") {
+        if (pagenames == "Cartpage") {
+            // cardpage()
+            cardload()
+            $('#t_amount').text(new Intl.NumberFormat().format(parseFloat(toprice)+deliveryprice))
+        }
+    }else
+    {
+    if (pagenames == "Cartpage") {
+        cardpage()
+        // cardload()
+        $('#t_amount').text(new Intl.NumberFormat().format(parseFloat(toprice)+deliveryprice))
+    }
+    }
+
+    
 
 }
 //  
@@ -117,11 +134,11 @@ function add_delete(id, o) {
         }
         else
         {
-            var p = o.parentElement.parentElement.parentElement;
+            var p = o.parentElement.parentElement;
             p.remove();
         }
     } catch (error) {
-        var p = o.parentElement.parentElement.parentElement;
+        var p = o.parentElement.parentElement;
             p.remove();
     }
    
@@ -141,7 +158,7 @@ function add_delete(id, o) {
             json.splice(i, 1);
             // localStorage["itemsArray"] = JSON.stringify(json);
             localStorage.setItem('itemsArray', JSON.stringify(json));
-            $("#p_count").text($("#p_count").text() - 1);
+            $(".p_count").text($(".p_count").text() - 1);
             onlodergetusersids()
         }
 

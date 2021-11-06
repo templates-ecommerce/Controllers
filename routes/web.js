@@ -72,11 +72,11 @@ function Encryptionsuccess() {
 // Create token encryption start
 
 function Encryption(number, subdomain) {
-    var key = CryptoJS.enc.Utf8.parse(subdomain.padStart(16, 'e'));
-    var iv = CryptoJS.enc.Utf8.parse(subdomain.padStart(16, 'e'));
+    var key = CryptoJS.enc.Utf8.parse(subdomain.padStart(32, 'e'));
+    var iv = CryptoJS.enc.Utf8.parse("F)a(rQ/HEp9E`2bk");
     var encrypted = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(number), key,
         {
-            keySize: 128 / 8,
+            keySize: 128 / 4,
             iv: iv,
             mode: CryptoJS.mode.CBC,
             padding: CryptoJS.pad.Pkcs7

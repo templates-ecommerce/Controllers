@@ -49,17 +49,17 @@ if(pagenames == "dashboard")
                     },
                     success: function (response) {
                         
-                        // console.log(JSON.parse(response))
+                        console.log(JSON.parse(response))
                         var datasjon = JSON.parse(response);
                         if (datasjon.Table1[0] != null) {
                             $("#fullname").text(datasjon.Table1[0].name);
                             $("#baddress").text(datasjon.Table1[0].address);
-                            $("#city").text(datasjon.Table1[0].city)
+                            $("#city").text(datasjon.Table1[0].CityName)
                         }
                         else{
                             $("#fullname").text(datasjon.Table[0].name);
                                 $("#baddress").text(datasjon.Table[0].address);
-                            $("#city").text(datasjon.Table[0].city)
+                            $("#city").text(datasjon.Table[0].CityName)
                         }
                         $("#phone").text(datasjon.Table[0].phone);
                         $("#email").text(email);

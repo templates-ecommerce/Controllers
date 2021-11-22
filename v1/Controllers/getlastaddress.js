@@ -52,8 +52,10 @@ if(pagenames == "dashboard")
                         'AccessKey': AccessKey,
                     },
                     success: function (response) {
+                        try {
+                            
                         
-                        console.log(JSON.parse(response))
+                        // console.log(JSON.parse(response))
                         var datasjon = JSON.parse(response);
                         if (datasjon.Table1[0] != null) {
                             $("#fullname").text(datasjon.Table1[0].name);
@@ -67,7 +69,9 @@ if(pagenames == "dashboard")
                         }
                         $("#phone").text(datasjon.Table[0].phone);
                         $("#email").text(datasjon.Table[0].email);
-    
+                    } catch (error) {
+                            
+                    }
                         
                         
                     }
@@ -80,5 +84,5 @@ if(pagenames == "dashboard")
 }
 
 } catch (error) {
-    console.log(error)
+    // console.log(error)
 }

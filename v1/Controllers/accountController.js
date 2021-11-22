@@ -28,37 +28,37 @@ if(pagenames == "account")
   let fbprovider = new firebase.auth.FacebookAuthProvider()
 
   function GoogleLogin() {
-    console.log('Login Btn Call')
+    // console.log('Login Btn Call')
     firebase.auth().signInWithPopup(Googleprovider).then(res => {
-      console.log(res.user)
+      // console.log(res.user)
       // document.getElementById('LoginScreen').style.display = "none"
       $('.noneDashboard').removeClass('d-none')
 
       showUserDetails(res.user)
     }).catch(e => {
-      console.log(e)
+      // console.log(e)
     })
   }
   function fbLogin() {
-    console.log('Login Btn Call')
+    // console.log('Login Btn Call')
     firebase.auth().signInWithPopup(fbprovider).then(res => {
-      console.log(res.user)
+      // console.log(res.user)
      
       $('.noneDashboard').removeClass('d-none')
       showUserDetails(res.user)
     }).catch(e => {
-      console.log(e)
+      // console.log(e)
     })
   }
 
   function guLogin() {
-    console.log('Login Btn Call')
+    // console.log('Login Btn Call')
     firebase.auth().signInAnonymously()
     .then(() => {
       // Signed in..
     })
     .catch((error) => {
-      console.log(e)
+      // console.log(e)
       // ...
     });
   }
@@ -104,7 +104,7 @@ if(pagenames == "account")
 }
 
 function LogoutUser() {
-  console.log('Logout Btn Call')
+  // console.log('Logout Btn Call')
   firebase.auth().signOut().then(() => {
     localStorage.removeItem('gotrue.user');
     localStorage.removeItem('itemsArray');
@@ -116,10 +116,10 @@ function LogoutUser() {
     // document.getElementById('LoginScreen').style.display = "block"
     // document.getElementById('dashboard').style.display = "none"
   }).catch(e => {
-    console.log(e)
+    // console.log(e)
   })
 }
 
 } catch (error) {
-  console.log(error)
+  // console.log(error)
 }

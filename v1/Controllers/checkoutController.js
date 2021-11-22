@@ -38,7 +38,7 @@ if (localStorage.getItem("gotrue.user") != null) {
 
     u_id = logins.id;
     email = logins.email;
-    console.log(logins)
+    // console.log(logins)
 
 }
 else {
@@ -410,7 +410,7 @@ function adddata() {
         success: function (dataResult) {
             var id = dataResult;
             // alert(dataResult)
-            console.log(dataResult);
+            // console.log(dataResult);
             localStorage.removeItem('itemsArray')
             $('#ec-overlay').hide()
             window.location.href = window.location.origin + '/invoice/?orderid=' + dataResult;
@@ -470,7 +470,7 @@ function callcity(allowkey, domainname) {
         },
         success: function (response) {
             var datas = JSON.parse(response);
-            console.log(datas)
+            // console.log(datas)
             var len = 0;
             if (datas != null) {
                 len = datas.length;
@@ -658,5 +658,5 @@ document.getElementById("emai").value = email;
 
 }
 } catch (error) {
-    console.log(error) 
+    // console.log(error) 
 }

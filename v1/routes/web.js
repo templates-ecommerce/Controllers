@@ -1,6 +1,6 @@
 var subdomain = SubDomain;
 var siteid = SiteID;
-var apicon = "https://api.eraconnect.net";
+var apicon = typeof host == 'undefined' ? 'https://api.eraconnect.net' : host;
 
 window.addEventListener('storage', async () => {
     // When local storage changes, dump the list to
@@ -103,7 +103,7 @@ function checkoutsloadallows(acckey, domain) {
             ouuid = generateUUID();
 
 
-            console.log(ouuid);
+            // console.log(ouuid);
 
             callcity(acckey, domain)
 

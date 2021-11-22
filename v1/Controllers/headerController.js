@@ -225,8 +225,8 @@ function add_delete(id, o) {
             var price = parseFloat(parseFloat(json[i].price) * json[i].quantity)
             toprice = parseFloat(parseFloat(toprice) - parseFloat(price)).toFixed(2);
             //console.log(toprice)
-            console.log(json[i].price)
-            console.log(parseFloat(toprice))
+            // console.log(json[i].price)
+            // console.log(parseFloat(toprice))
             $('#pricedonefotter').text(new Intl.NumberFormat().format(parseFloat(toprice)));
 
             json.splice(i, 1);
@@ -266,5 +266,5 @@ function add_delete(id, o) {
 }
 
 } catch (error) {
-    console.log(error)
+    // console.log(error)
 }

@@ -61,6 +61,9 @@ function cardpage()
 }
 
 function getcities(){
+    try {
+        
+    
     $.ajax({
         "url": apicon+"/api/Ecom/GetManageDelivery",
         "method": "GET",
@@ -70,14 +73,16 @@ function getcities(){
         },
         success: function (response) {
             var datas = JSON.parse(response);
-            console.log(datas)
+            // console.log(datas)
             var len = 0;
             if (datas != null) {
                 len = datas.length;
             }
-            else (
-                alert(response)
-            )
+            else {
+
+            }
+                // alert(response)
+            
             if (len > 0) {
 
                 for (var i = 0; i < len; i++) {
@@ -91,6 +96,9 @@ function getcities(){
 
         }
     });
+} catch (error) {
+        
+}
 }
 function onchacity() {
     deliveryprice = parseFloat($('#getcitys :selected').data("price"));
@@ -101,5 +109,5 @@ function onchacity() {
 }
 
 } catch (error) {
-    console.log(error)
+    // console.log(error)
 }

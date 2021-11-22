@@ -42,7 +42,9 @@ function onloaderdashboard() {
           'AccessKey': AccessKey,
         },
         success: function (response) {
-
+          try {
+            
+          
 
           var len = 0;
           if (JSON.parse(response) != null) {
@@ -121,6 +123,9 @@ function onloaderdashboard() {
             // 
           }
           getaddressdas();
+        } catch (error) {
+            
+        }
         }
       });
 
@@ -140,5 +145,5 @@ function showallorder(){
 }
 
 } catch (error) {
-  console.log(error)
+  // console.log(error)
 }

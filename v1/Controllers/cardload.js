@@ -1,3 +1,7 @@
+try {
+    
+
+
 function cardload()
 {
     try {
@@ -39,13 +43,18 @@ function cardload()
         };
         $('.pricedonefotter').text(new Intl.NumberFormat().format(parseFloat(toprice)));
         $(".p_count").text(count);
-
+        checkoutfun()
     } catch (error) {
         var count = 0;
         toprice = 0;
      
         $('.pricedonefotter').text(toprice);
         $(".p_count").text(count);
+        checkoutfun()
 
     }
+}
+
+} catch (error) {
+    console.log(error)
 }

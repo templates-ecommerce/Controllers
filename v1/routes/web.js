@@ -47,7 +47,9 @@ $(document).ready(function () {
                 checkoutsloadallows(AccessKey, subdomain);
                 invoiceonloader();
                 dashboardonloader();
+                
                 Cartpage();
+                verfyaccountdone()
                 // track();
             }
         })

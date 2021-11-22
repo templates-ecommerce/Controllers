@@ -1,3 +1,5 @@
+try{
+
 if(pagenames == "invoice")
 {
 // var orderid;
@@ -112,4 +114,8 @@ function getUrlParameter(name, url = window.location.href) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
+}
+
+} catch (error) {
+    console.log(error)
 }

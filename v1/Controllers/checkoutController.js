@@ -1,11 +1,33 @@
+try {
+    
+
+
 if(pagenames == "checkout")
 {
+    sessionStorage.removeItem("checkout");
+    items = localStorage.getItem("itemsArray");
+    json = JSON.parse(items);
+    if(json !=null)
+    {
+        if(json.length > 0)
+        {
+    
+        }
+        else{
+            window.location.href = window.location.origin;
+        }
+    }
+    else{
+      
+        window.location.href = window.location.origin;
+    
+    }
 var getipaddress;
 function getIP(json) {
     getipaddress = json.ip;
     //   alert("My public IP address is: " + json.ip);
 }
-
+var dataexmple=[];
 
 var id;
 var u_id;
@@ -44,6 +66,7 @@ var sutotle = 0;
 var subtot = 0;
 var deliveyprice = 0;
 function load() {
+    sessionStorage.removeItem("checkout");
     $("#tablaa").html('');
     if (localStorage.getItem("itemsArray") != null) {
         items = localStorage.getItem("itemsArray");
@@ -52,6 +75,11 @@ function load() {
         toprice = 0;
         var products = '';
         for (i = 0; i < json.length; i++) {
+            if(json[i].id.includes('example'))
+            {
+                dataexmple.push(json[i])
+            }
+            
             // console.log(json[i]);
             count++;
             products += '<div class="col-sm-12 mb-6">';
@@ -90,6 +118,23 @@ function load() {
         sutotle = toprice;
         subtot = toprice;
         onchacity();
+        items = localStorage.getItem("itemsArray");
+    json = JSON.parse(items);
+    if(json !=null)
+    {
+        if(json.length > 0)
+        {
+    
+        }
+        else{
+            window.location.href = window.location.origin;
+        }
+    }
+    else{
+      
+        window.location.href = window.location.origin;
+    
+    }
     }
     else {
         $("#count").text(0 + ' items');
@@ -98,6 +143,23 @@ function load() {
         sutotle = 0;
         subtot = 0;
         $("#tablaa").remove();
+        items = localStorage.getItem("itemsArray");
+    json = JSON.parse(items);
+    if(json !=null)
+    {
+        if(json.length > 0)
+        {
+    
+        }
+        else{
+            window.location.href = window.location.origin;
+        }
+    }
+    else{
+      
+        window.location.href = window.location.origin;
+    
+    }
     }
 
 }
@@ -162,7 +224,18 @@ function validate() {
         errorschecks = "error";
     } else {
         if (errorschecks == "success")
-            errorschecks = "success";
+        {
+            var emailregExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            var email = emai.match(emailregExp);
+
+            if (email) {
+                errorschecks = "success";
+            }else{
+                document.getElementById("erroremail").innerHTML = "Invaild email";
+                errorschecks = "error";
+            }
+        }
+           
     }
     if ($('#shippingtrue').is(":checked")) {
         var s_name = document.getElementById("s_name").value;
@@ -192,7 +265,17 @@ function validate() {
         }
     }
     if (errorschecks == "success") {
-        adddata()
+        if(dataexmple.length > 0){
+            $('#alert-set-cart div').remove();
+            $('#alert-set-cart').append('<div style="background-color: #f8d7da;" class="alert alert-danger alert-dismissible fade show" role="alert">'+
+            '<strong>Warning!</strong> You will be able to place order once Products are synced.'+
+            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'+
+          '</div>');
+        }
+        else{
+            adddata()
+        }
+        
     }
 }
 
@@ -228,6 +311,7 @@ function adddata() {
     // alert(totalamounts)
  
     var token = $('meta[name="csrf-token"]').attr('content');
+    var emai = document.getElementById("emai").value;
     var name = document.getElementById("name").value;
     //    var emai= 
     var address = document.getElementById("address").value;
@@ -300,7 +384,7 @@ function adddata() {
             'city': city,
             'state': '',
             'country': country,
-            'email': email,
+            'email': emai,
             'phone': phone,
         },
 
@@ -556,8 +640,23 @@ function phonevalidcheck() {
         document.getElementById("errorphone").innerHTML = "Enter 11 to 14 digits";
     }
 }
+function emailvalidcheck() {
+    var email = document.getElementById("emai").value;
+    var regExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    var checkemail = email.match(regExp);
+    if (checkemail) {
+        document.getElementById("erroremail").innerHTML = "";
+    }
+    else {
+        document.getElementById("erroremail").innerHTML = "Invaild email";
+        errorschecks = "error";
+    }
+}
 
 document.getElementById("emai").value = email;
 
 
+}
+} catch (error) {
+    console.log(error) 
 }

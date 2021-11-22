@@ -1,10 +1,49 @@
+try{
+
 if(foternameallow == 'fotter')
 {
 // Get the current user:
-const user = netlifyIdentity.currentUser();
+// const user = netlifyIdentity.currentUser();
 // var json=null;
 
+items = localStorage.getItem("itemsArray");
+json = JSON.parse(items);
+if(json !=null)
+{
+    if(json.length > 0)
+    {
+        $('.btncheckdis').removeClass('disabled')
+    }
+    else{
+        $('.btncheckdis').addClass('disabled')
+    }
+}
+else{
+  
+    $('.btncheckdis').addClass('disabled')
 
+}
+
+function checkoutfun()
+{
+    items = localStorage.getItem("itemsArray");
+json = JSON.parse(items);
+if(json !=null)
+{
+    if(json.length > 0)
+    {
+        $('.btncheckdis').removeClass('disabled')
+    }
+    else{
+        $('.btncheckdis').addClass('disabled')
+    }
+}
+else{
+  
+    $('.btncheckdis').addClass('disabled')
+
+}
+}
 // const idToUse = id;
 var accpagescheck = null;
 function checkoutbtc() {
@@ -13,19 +52,51 @@ function checkoutbtc() {
 
     }
     else {
-        accpagescheck = "checkout";
-        $('#exampleModalPreview').modal('hide');
-        account()
+        // accpagescheck = "checkout";
+        sessionStorage.setItem("checkout",'true');
+        window.location.href = window.location.origin + "/register";
+        // $('#exampleModalPreview').modal('hide');
+        // account()
     }
 }
 
 
 window.onload = function () {
     if (localStorage.getItem("gotrue.user") != null) {
-        $('#noneDashboard').removeClass('d-none')
+        $('.noneDashboard').removeClass('d-none')
+        $('.noneregister').addClass('d-none')
+        $('.nonelogin').addClass('d-none')
+        login = localStorage.getItem("gotrue.user");
+        logins = JSON.parse(login);
+        if(logins.fullname !=null)
+        $('#loggedname').text(logins.fullname)
+        
+        $('.logouttrue').removeAttr("data-bs-toggle");
+        $('.logouttrue').removeAttr("data-bs-target");
+        $('.logouttrue').attr("data-bs-toggle", "modal");
+        $('.logouttrue').attr("data-bs-target", "#Logoutallow");
+       
+        $('#mobileviewaccount').removeAttr("href");
+        $('#mobileviewaccount').attr("href", "javascript:;");
+        $('#mobileviewaccount').attr("data-bs-toggle", "modal");
+        $('#mobileviewaccount').attr("data-bs-target", "#Logoutallow");
+
 
     } else {
-        $('#noneDashboard').addClass('d-none')
+        $('.noneDashboard').addClass('d-none')
+        $('.nonelogin').removeClass('d-none')
+        $('.noneregister').removeClass('d-none')
+        $('.logouttrue').removeAttr("data-bs-toggle");
+        $('.logouttrue').removeAttr("data-bs-target");
+        $('.logouttrue').attr("data-bs-toggle", "dropdown");
+        
+        $('#mobileviewaccount').removeAttr("href");
+        $('#mobileviewaccount').removeAttr("data-bs-target-bs-toggle");
+        $('#mobileviewaccount').removeAttr("href");
+
+        $('#mobileviewaccount').attr("href", "/register");
+    
+        
     }
 
 }
@@ -102,25 +173,28 @@ function cartpricechnage(qty, p_id, i, price,checkrequet) {
 //   netlifyIdentity code start
 // Bind to eventsgetusersids()
 
-netlifyIdentity.on('login',
-    user => redirtedallows());
+// netlifyIdentity.on('login',
+//     user => redirtedallows());
 
 function redirtedallows() {
     if (accpagescheck != null) {
         window.location.href = window.location.origin + "/checkout"
     }
+    else{
+        window.location.href = window.location.origin;
+    }
 }
 
 
-netlifyIdentity.on('login', user => $('#noneDashboard').removeClass('d-none'));
-netlifyIdentity.on('login', user => getusersids());
-netlifyIdentity.on('logout', user => $('#noneDashboard').addClass('d-none'));
-netlifyIdentity.on('logout', user => localStorage.removeItem('itemsArray'));
-netlifyIdentity.on('logout', user => getusersids());
-function account() {
+// netlifyIdentity.on('login', user => $('.noneDashboard').removeClass('d-none'));
+// netlifyIdentity.on('login', user => getusersids());
+// netlifyIdentity.on('logout', user => $('.noneDashboard').addClass('d-none'));
+// netlifyIdentity.on('logout', user => localStorage.removeItem('itemsArray'));
+// netlifyIdentity.on('logout', user => getusersids());
+// function account() {
 
-    netlifyIdentity.open('login');
-}
+//     netlifyIdentity.open('login');
+// }
 // var span_Text = document.getElementById("loginaccount");
 //   netlifyIdentity code end
 
@@ -189,4 +263,8 @@ function add_delete(id, o) {
 
 }
 
+}
+
+} catch (error) {
+    console.log(error)
 }

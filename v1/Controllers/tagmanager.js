@@ -1,3 +1,4 @@
+try{
 var tagmanager = tagmaneger;
 
 if(tagmanager != '')
@@ -8,4 +9,7 @@ if(tagmanager != '')
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer',tagmanager);
+}
+} catch (error) {
+  console.log(error)
 }

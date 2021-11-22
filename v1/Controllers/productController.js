@@ -1,3 +1,5 @@
+try{
+
 if(pagesnames == 'product')
 {
   var pagenames = null;
@@ -47,8 +49,11 @@ function Check(id, title, dec, price, img, qty) {
   toast.success("New item(s) have been added to your cart");
 
   cardload();
-
+  
 
 
 }
+}
+} catch (error) {
+  console.log(error)
 }

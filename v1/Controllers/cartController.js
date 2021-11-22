@@ -1,3 +1,7 @@
+try {
+    
+
+
 if(pagenames == "Cartpage")
 {
     var deliveryprice =0;
@@ -94,4 +98,8 @@ function onchacity() {
 
     $('#t_amount').text(new Intl.NumberFormat().format(parseFloat(toprice)+deliveryprice))
 }
+}
+
+} catch (error) {
+    console.log(error)
 }

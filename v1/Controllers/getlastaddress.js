@@ -1,3 +1,7 @@
+try {
+    
+
+
 if(pagenames == "checkout")
 {
 function getuseraddress(namedomain, keyaccess) {
@@ -62,7 +66,7 @@ if(pagenames == "dashboard")
                             $("#city").text(datasjon.Table[0].CityName)
                         }
                         $("#phone").text(datasjon.Table[0].phone);
-                        $("#email").text(email);
+                        $("#email").text(datasjon.Table[0].email);
     
                         
                         
@@ -73,4 +77,8 @@ if(pagenames == "dashboard")
     
         }
     }
+}
+
+} catch (error) {
+    console.log(error)
 }

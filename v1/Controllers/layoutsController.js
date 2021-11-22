@@ -1,3 +1,5 @@
+try{
+
 if(foternameallow == 'fotter')
 {
 var ueres_id = null;
@@ -162,6 +164,8 @@ function socialtagsandcontant() {
 }
 
 }
-
+} catch (error) {
+    console.log(error)
+}
 // Listen for input event on numInput.
 // Reusable Function to Enforce MaxLength

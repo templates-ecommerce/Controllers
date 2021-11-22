@@ -1,3 +1,7 @@
+try {
+  
+
+
 if(pagenames == "track")
 {
   
@@ -161,4 +165,8 @@ $("#trackid").keyup(function(event) {
       $("#trackbtndone").click();
   }
 });
+}
+
+} catch (error) {
+  console.log(error)
 }

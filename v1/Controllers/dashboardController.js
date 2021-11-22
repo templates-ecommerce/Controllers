@@ -1,3 +1,7 @@
+try {
+  
+
+
 if(pagenames == "dashboard")
 {
  
@@ -22,7 +26,7 @@ $(document).ready(function () {
 var ord = '';
 
 
-
+var product=0;
 
 
 // Dashboard function start
@@ -30,7 +34,6 @@ function onloaderdashboard() {
   
   try {
     if (pagenames == "dashboard") {
-      console.log(AccessKey)
       $.ajax({
         url: apicon+'/api/ECom/GetOrders?StartDate=2021-01-01&EndDate=3021-01-01&CustomerID=' + u_id,
         method: "GET",
@@ -53,7 +56,7 @@ function onloaderdashboard() {
             var count=0;
             var Delivered=0;
             var subamountset =0;
-            var product=0;
+            
             product=JSON.parse(response)[0].ProductCount;
             for (var i = 0; i < len; i++) {
               var datas = JSON.parse(response)[i];
@@ -134,4 +137,8 @@ function showallorder(){
   $('.hidetrdone').show();
 }
 
+}
+
+} catch (error) {
+  console.log(error)
 }

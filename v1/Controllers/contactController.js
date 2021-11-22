@@ -1,3 +1,7 @@
+try {
+    
+
+
 if(pagenames == "contact")
 {
 function sendEmail()
@@ -140,4 +144,7 @@ else{
 
 
 
+}
+} catch (error) {
+    console.log(error)
 }

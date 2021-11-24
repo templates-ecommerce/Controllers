@@ -9,7 +9,7 @@ function verfyaccountdone(){
         {
             $.ajax({
     
-                url: apicon+"/api/ECom/ActivateCustomer?id=45007F39-D2D7-403A-99A1-5748094418F2",
+                url: apicon+"/api/ECom/ActivateCustomer?id="+tokenid,
                 // url: apicon + "/api/ECom/ActivateCustomer?id="+tokenid,
                 method: "GET",
                 headers: {

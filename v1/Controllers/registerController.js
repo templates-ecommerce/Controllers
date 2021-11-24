@@ -4,7 +4,7 @@ if (pagenames == "account") {
 
     }
     function validate() {
-        $('#ec-overlay').show()
+        
         var errorschecks = "success";
         var r_fullname = document.getElementById("r_fullname").value;
         var r_email = document.getElementById("r_email").value;
@@ -99,6 +99,7 @@ if (pagenames == "account") {
     }
 
     function registeraccount(fname, email, phone, pass) {
+        $('#ec-overlay').show()
         registerdata = {
             "Name": fname,
             "Email": email,

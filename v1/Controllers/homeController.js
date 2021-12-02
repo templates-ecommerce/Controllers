@@ -74,7 +74,7 @@ try {
             var toast = new Toasty(options);
             toast.configure(options);
 
-            toast.success("New item(s) have been added to your cart");
+            toast.success("Product added to your cart");
 
             cardload();
         }
@@ -276,5 +276,5 @@ try {
     }
 
 } catch (error) {
-    // console.log(error)
+    console.log(error)
 }

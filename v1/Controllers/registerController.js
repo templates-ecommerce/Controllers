@@ -4,7 +4,7 @@ if (pagenames == "account") {
 
     }
     function validate() {
-        
+       
         var errorschecks = "success";
         var r_fullname = document.getElementById("r_fullname").value;
         var r_email = document.getElementById("r_email").value;
@@ -28,14 +28,13 @@ if (pagenames == "account") {
             document.getElementById("e_email").innerHTML = "Email required";
             errorschecks = "error";
         } else {
-            if (errorschecks == "success") 
-            { 
+            if (errorschecks == "success") {
                 var emailregExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
                 var email = r_email.match(emailregExp);
 
                 if (email) {
                     errorschecks = "success";
-                }else{
+                } else {
                     document.getElementById("e_email").innerHTML = "Invaild email";
                     errorschecks = "error";
                 }
@@ -68,8 +67,10 @@ if (pagenames == "account") {
 
         }
         if (errorschecks == "success") {
-            registeraccount(r_fullname, r_email, r_phone, r_password)
+            $('#ec-overlay').show()
+            registeraccount(null,r_fullname, r_email, r_phone, r_password,"Email")
         }
+       
     }
 
 
@@ -98,13 +99,15 @@ if (pagenames == "account") {
         }
     }
 
-    function registeraccount(fname, email, phone, pass) {
+    function registeraccount(id, fname, email, phone, pass, mode) {
         $('#ec-overlay').show()
         registerdata = {
+            "SSO": id,
             "Name": fname,
             "Email": email,
             "Contact": phone,
-            "Password": pass
+            "Password": pass,
+            "Mode": mode
         };
         $.ajax({
             url: apicon + "/api/ECom/SetCustomer",
@@ -119,7 +122,21 @@ if (pagenames == "account") {
             contentType: 'application/json',
             success: function (response) {
                 $('#ec-overlay').hide()
-                if (response.includes('Success')) {
+                if (response.includes('SSO')) {
+                    var user = JSON.parse(response);
+
+                    $('.noneDashboard').removeClass('d-none')
+                    localStorage.removeItem('gotrue.user');
+                    const newItem = {
+                        'id': user[0].Uid,
+                        'email': user[0].Email,
+                        'fullname': user[0].FullName,
+                        'mode': mode,
+                    };
+                    localStorage.setItem('gotrue.user', JSON.stringify(newItem));
+                    showUserDetails(user)
+                }
+                else if (response.includes('Success')) {
                     var options = {
                         autoClose: true,
                         progressBar: true,
@@ -151,6 +168,7 @@ if (pagenames == "account") {
 
                     toast.error(response);
                 }
+                $('#ec-overlay').hide()
             },
 
         });

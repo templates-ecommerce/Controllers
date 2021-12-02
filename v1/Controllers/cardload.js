@@ -13,6 +13,12 @@ function cardload()
         var count = 0;
         toprice = 0;
         var student = '';
+        if(result.length){
+            $('#imgaddtocartremove').hide();
+        }
+        else{
+            $('#imgaddtocartremove').show();
+        }
         for (i = 0; i < result.length; i++) {
             // console.log(json[i]);
             count++;
@@ -56,5 +62,5 @@ function cardload()
 }
 
 } catch (error) {
-    // console.log(error)
+    console.log(error)
 }

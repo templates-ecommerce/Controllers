@@ -62,12 +62,12 @@ function sliderheroactive() {
 
         })
     } catch (error) {
-        // console.log(error)
+        console.log(error)
     }
     // Slider allow end
 }
 }
 
 } catch (error) {
-    // console.log(error)
+    console.log(error)
 }

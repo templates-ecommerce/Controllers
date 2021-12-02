@@ -55,5 +55,5 @@ function Check(id, title, dec, price, img, qty) {
 }
 }
 } catch (error) {
-  // console.log(error)
+  console.log(error)
 }

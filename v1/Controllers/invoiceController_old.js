@@ -8,7 +8,7 @@ logins = JSON.parse(login);
 
 u_id = logins.id;
 email = logins.email;
-// console.log(logins)
+console.log(logins)
 
 }
 else{
@@ -34,7 +34,7 @@ var username;
 var url_string = window.location.href
 var url = new URL(url_string);
 var orderid = url.searchParams.get("orderid");
-// console.log(orderid);
+console.log(orderid);
 // document.getElementById('inno').innerText = 'abc';
 // $("#inno").append('abc');
 $("#emails").append(email);
@@ -63,7 +63,7 @@ function onloaderinvoice()
                 'AccessKey': AccessKey,
                 },
     success: function(response){
-      // console.log(JSON.parse(response))
+      console.log(JSON.parse(response))
       var datas = JSON.parse(response).Table;
       // console.log(datas[0]);
       if(datas[0].Shipping_Name !=null)

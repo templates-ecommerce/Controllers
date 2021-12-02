@@ -33,33 +33,36 @@ if (pagenames == "account") {
 
         
         if (errorschecks == "success") {
-            loginaccount(l_email, l_password)
+            loginaccount(null,null,l_email, l_password,"Email")
         }
     }
 
 
 
  
-    function loginaccount(email, pass) {
+    function loginaccount(id,fname,email, pass, mode) {
+        $('#ec-overlay').show()
       
         $.ajax({
-            url: apicon + "/api/ECom/getlogin?email="+email+"&password="+pass,
+            url: apicon + "/api/ECom/getlogin?SSO="+id+"&fullname="+fname+"&email="+email+"&password="+pass+"&mode="+mode,
             method: "get",
             headers: {
                 'SubDomain': subdomain,
                 'AccessKey': AccessKey,
             },
             success: function (response) {
+                console.log(response)
                 if (!response.includes('Invalid')) {
-                    $('.noneDashboard').removeClass('d-none')
+                    // $('.noneDashboard').removeClass('d-none')
                     localStorage.removeItem('gotrue.user');
                     var Response = JSON.parse(response)
                     const newItem = {
-                        'id': Response[0].ID,
+                        'id': Response[0].Uid,
                         'email': Response[0].Email,
                         'fullname': Response[0].Name,
                     };
                     localStorage.setItem('gotrue.user', JSON.stringify(newItem));
+                    
                     if(sessionStorage.checkout !=null){
                         window.location.href = window.location.origin + "/checkout";
                       }else{
@@ -82,6 +85,7 @@ if (pagenames == "account") {
 
                     toast.error(JSON.parse(response)[0].Error);
                 }
+                $('#ec-overlay').hide()
             },
 
         });

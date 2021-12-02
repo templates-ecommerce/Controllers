@@ -24,7 +24,7 @@ function onloaderinvoice()
         if (pagenames == "invoice") {
             var OrderID = getUrlParameter('orderid');
             
-            // console.log(OrderID)
+            console.log(OrderID)
             $.ajax({
                 url: apicon+'/api/ECom/GetOrdersDetail?EOrderID=' + OrderID,
                 method: "GET",
@@ -117,5 +117,5 @@ function getUrlParameter(name, url = window.location.href) {
 }
 
 } catch (error) {
-    // console.log(error)
+    console.log(error)
 }

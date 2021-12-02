@@ -32,6 +32,7 @@ var dataexmple=[];
 var id;
 var u_id;
 var email;
+var mode;
 if (localStorage.getItem("gotrue.user") != null) {
     login = localStorage.getItem("gotrue.user");
     logins = JSON.parse(login);
@@ -39,6 +40,13 @@ if (localStorage.getItem("gotrue.user") != null) {
     u_id = logins.id;
     email = logins.email;
     // console.log(logins)
+    mode = logins.mode;
+
+    if(mode =="guest")
+    {
+        $('#emai').prop("disabled",false);
+       
+    }
 
 }
 else {
@@ -397,7 +405,7 @@ function adddata() {
 
     // console.log(JSON.stringify(eOrderInput));
     $.ajax({
-        url: apicon+"/api/ecom/OrderCreated",
+        url: apicon+"/api/ecom/OrderCreated?mode="+mode,
         method: "POST",
         headers: {
             'SubDomain': subdomain,
@@ -410,11 +418,12 @@ function adddata() {
         success: function (dataResult) {
             var id = dataResult;
             // alert(dataResult)
-            // console.log(dataResult);
+            console.log(dataResult);
             localStorage.removeItem('itemsArray')
             $('#ec-overlay').hide()
-            window.location.href = window.location.origin + '/invoice/?orderid=' + dataResult;
-
+            window.open(window.location.origin + '/invoice/?orderid=' + dataResult,'_blank');
+            //  window.location.href = window.location.origin + '/invoice/?orderid=' + dataResult;
+            window.location.href = window.location.origin;
         }
     });
 }
@@ -470,7 +479,7 @@ function callcity(allowkey, domainname) {
         },
         success: function (response) {
             var datas = JSON.parse(response);
-            // console.log(datas)
+            console.log(datas)
             var len = 0;
             if (datas != null) {
                 len = datas.length;
@@ -658,5 +667,5 @@ document.getElementById("emai").value = email;
 
 }
 } catch (error) {
-    // console.log(error) 
+    console.log(error) 
 }

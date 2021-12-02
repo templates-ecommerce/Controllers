@@ -63,7 +63,7 @@ function sendEmail()
                     'AccessKey': AccessKey,
                     },
                     success: function(response){
-                        // console.log(response);
+                        console.log(response);
                         if("True" == response)
                         {
                             $('#message').val('');
@@ -146,5 +146,5 @@ else{
 
 }
 } catch (error) {
-    // console.log(error)
+    console.log(error)
 }

@@ -9,16 +9,22 @@ var u_id;
 
 $(document).ready(function () {
   if (localStorage.getItem("gotrue.user") != null) {
+    
+
     login = localStorage.getItem("gotrue.user");
     logins = JSON.parse(login);
-
+    if(logins.mode !="guest")
+    {
     u_id = logins.id;
     email = logins.email;
     // console.log(logins)
-
+    }
+    else{
+      window.location.href = window.location.origin;
+    }
   }
   else {
-    window.location.href = window.location.origin + "/products";
+    window.location.href = window.location.origin;
 
   }
 })
@@ -42,9 +48,8 @@ function onloaderdashboard() {
           'AccessKey': AccessKey,
         },
         success: function (response) {
-          try {
-            
-          
+
+          console.log(JSON.parse(response));
 
           var len = 0;
           if (JSON.parse(response) != null) {
@@ -59,7 +64,7 @@ function onloaderdashboard() {
             var Delivered=0;
             var subamountset =0;
             
-            product=JSON.parse(response)[0].ProductCount;
+            product=JSON.parse(response)[0].ProductsCount;
             for (var i = 0; i < len; i++) {
               var datas = JSON.parse(response)[i];
               count=count+1;
@@ -123,9 +128,6 @@ function onloaderdashboard() {
             // 
           }
           getaddressdas();
-        } catch (error) {
-            
-        }
         }
       });
 
@@ -145,5 +147,5 @@ function showallorder(){
 }
 
 } catch (error) {
-  // console.log(error)
+  console.log(error)
 }

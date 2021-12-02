@@ -1,11 +1,11 @@
 try {
   
-
+  var mode;
 
 // Your web app's Firebase configuration
     var firebaseConfig = {
       apiKey: "AIzaSyDkjke06pLb_N3hRITZi3I9WpmCoOIzIbA",
-      authDomain: "login-3c236.firebaseapp.com",
+      authDomain: "login.eralive.net",
       projectId: "login-3c236",
       storageBucket: "login-3c236.appspot.com",
       messagingSenderId: "335202469896",
@@ -28,37 +28,68 @@ if(pagenames == "account")
   let fbprovider = new firebase.auth.FacebookAuthProvider()
 
   function GoogleLogin() {
-    // console.log('Login Btn Call')
+    console.log('Login Btn Call')
     firebase.auth().signInWithPopup(Googleprovider).then(res => {
-      // console.log(res.user)
+      console.log(res.user)
       // document.getElementById('LoginScreen').style.display = "none"
       $('.noneDashboard').removeClass('d-none')
-
-      showUserDetails(res.user)
+      mode= "Google";
+      var id = res.user.uid;
+      var fname = res.user.displayName;
+      var email = res.user.email;
+      var phone = null;
+      var pass = null;
+      
+      if(typeof accountname == 'undefined' ? null : accountname  == "loginallow" )
+      {
+        loginaccount(id,fname,email, pass, mode)
+      }
+      else{
+        registeraccount(id,fname, email, phone, pass,mode)
+      }
+      
+      // showUserDetails(res.user)
     }).catch(e => {
-      // console.log(e)
+      console.log(e)
     })
   }
   function fbLogin() {
-    // console.log('Login Btn Call')
+    console.log('Login Btn Call')
     firebase.auth().signInWithPopup(fbprovider).then(res => {
-      // console.log(res.user)
-     
+      console.log(res.user)
+      mode= "Facebook";
+      var id = res.user.uid;
+      var fname = res.user.displayName;
+      var email = res.user.email;
+      var phone = null;
+      var pass = null;
+      
+
+      if(accountname == "loginallow" )
+      {
+        loginaccount(id,fname,email, pass, mode)
+      }
+      else{
+        registeraccount(id,fname, email, phone, pass,mode)
+      }
+      
       $('.noneDashboard').removeClass('d-none')
-      showUserDetails(res.user)
+      // showUserDetails(res.user)
     }).catch(e => {
-      // console.log(e)
+      console.log(e)
     })
   }
 
   function guLogin() {
-    // console.log('Login Btn Call')
+    console.log('Login Btn Call')
     firebase.auth().signInAnonymously()
     .then(() => {
+      checkAuthState()
+     
       // Signed in..
     })
     .catch((error) => {
-      // console.log(e)
+      console.log(error)
       // ...
     });
   }
@@ -75,23 +106,23 @@ if(pagenames == "account")
     }else{
       window.location.href = window.location.origin;
     }
-      $('.noneDashboard').removeClass('d-none')
+      // $('.noneDashboard').removeClass('d-none')
   }
 
   function checkAuthState() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        
-        $('.noneDashboard').removeClass('d-none')
-        localStorage.removeItem('gotrue.user');
-        const newItem = {
-          'id': user.uid,
-          'email': user.email,
-          'fullname': user.displayName,
-        };
-        localStorage.setItem('gotrue.user', JSON.stringify(newItem));
-        showUserDetails(user)
-        
+        mode= "guest";
+        // $('.noneDashboard').removeClass('d-none')
+          localStorage.removeItem('gotrue.user');
+          const newItem = {
+            'id': user.uid,
+            'email': user.email,
+            'fullname': user.displayName,
+            'mode': mode,
+          };
+          localStorage.setItem('gotrue.user', JSON.stringify(newItem));
+          showUserDetails(user)
       } else {
         
       }
@@ -99,12 +130,12 @@ if(pagenames == "account")
   }
 
   
-  checkAuthState()
+  
 
 }
 
 function LogoutUser() {
-  // console.log('Logout Btn Call')
+  console.log('Logout Btn Call')
   firebase.auth().signOut().then(() => {
     localStorage.removeItem('gotrue.user');
     localStorage.removeItem('itemsArray');
@@ -116,10 +147,10 @@ function LogoutUser() {
     // document.getElementById('LoginScreen').style.display = "block"
     // document.getElementById('dashboard').style.display = "none"
   }).catch(e => {
-    // console.log(e)
+    console.log(e)
   })
 }
 
 } catch (error) {
-  // console.log(error)
+  console.log(error)
 }

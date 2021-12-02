@@ -49,7 +49,8 @@ $(document).ready(function () {
                 dashboardonloader();
                 
                 Cartpage();
-                verfyaccountdone()
+                verifycuser()
+                
                 // track();
             }
         })
@@ -93,6 +94,18 @@ function Encryption(number, subdomain) {
 // Create token encryption end
 
 
+// verify start
+function verifycuser()
+{
+    try {
+        if (pagenames == "Home") {
+        verfyaccountdone()
+        }
+    } catch (error) {
+        
+    }
+}
+// verify end
 
 
 // Checkout onloader start
@@ -103,7 +116,7 @@ function checkoutsloadallows(acckey, domain) {
             ouuid = generateUUID();
 
 
-            // console.log(ouuid);
+            console.log(ouuid);
 
             callcity(acckey, domain)
 

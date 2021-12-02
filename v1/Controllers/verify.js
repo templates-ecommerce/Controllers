@@ -18,7 +18,7 @@ function verfyaccountdone(){
                 },
                 success: function (response) {
                     if(JSON.parse(response).length){
-                        $('.noneDashboard').removeClass('d-none')
+                        // $('.noneDashboard').removeClass('d-none')
                     localStorage.removeItem('gotrue.user');
                     var Response = JSON.parse(response)
                     const newItem = {

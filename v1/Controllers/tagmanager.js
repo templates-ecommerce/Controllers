@@ -11,5 +11,5 @@ if(tagmanager != '')
   })(window,document,'script','dataLayer',tagmanager);
 }
 } catch (error) {
-  // console.log(error)
+  console.log(error)
 }

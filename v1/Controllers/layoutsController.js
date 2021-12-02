@@ -108,7 +108,7 @@ function socialtagsandcontant() {
             // contact allow start
             try {
                     if (social_mobile != null && social_mobile != '' && social_mobile.trim() != '') {
-                    $(".parmobile").html('<a class="text-color" href="tel:' + social_mobile + '"><i class="fa fa-mobile mr-2"></i>' + social_mobile + '</a>');
+                    $(".parmobile").html('<a class="text-color" href="tel:' + social_mobile + '"><i class="fa fa-phone mr-2"></i>' + social_mobile + '</a>');
                     $(".parmobile").removeClass("d-none");
                 }
             } catch (error) {
@@ -116,7 +116,7 @@ function socialtagsandcontant() {
             }
             try {
                     if (social_email != null && social_email != '' && social_email.trim() != '') {
-                    $(".paremail").html('<a class="text-color" href="mailto:' + social_email + '"><i class="fa fa-envelope-o mr-2"></i>' + social_email + '</a>');
+                    $(".paremail").html('<a class="text-color" href="mailto:' + social_email + '"><i class="fa fa-envelope-o mr-2" style="font-size:12px;"></i>' + social_email + '</a>');
                     $(".paremail").removeClass("d-none");
                 }
             } catch (error) {
@@ -165,7 +165,7 @@ function socialtagsandcontant() {
 
 }
 } catch (error) {
-    // console.log(error)
+    console.log(error)
 }
 // Listen for input event on numInput.
 // Reusable Function to Enforce MaxLength

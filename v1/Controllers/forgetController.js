@@ -1,4 +1,4 @@
-function validateforget() {
+function validate() {
     var errorschecks = "success";
     
     var l_email = document.getElementById("l_email").value;

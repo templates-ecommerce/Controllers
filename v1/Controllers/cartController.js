@@ -20,7 +20,10 @@ function cardpage()
             // console.log(json[i]);
             count++;
             student +='<tr>'
-            student +='<td data-label="Product" class="ec-cart-pro-name"><a href="'+window.location.origin+'/products/'+result[i].id+'" target="_blank"><img class="ec-cart-pro-img mr-4" src="' + result[i].img + '" alt="' +result[i].name + '" />' +result[i].name + '</a></td>'
+            student +='<td data-label="Product" class="ec-cart-pro-name"><a href="'+window.location.origin+'/products/'+result[i].old_id+'" target="_blank"><img class="ec-cart-pro-img mr-4" src="' + result[i].img + '" alt="' +result[i].name + '" />' +result[i].name + '</a>';
+            if(result[i].size !='')
+            student +='<br>Size: ('+result[i].size+')';
+            student +='</td>'
             student +='<td data-label="Price" class="ec-cart-pro-price"><span class="amount">PKR: '+new Intl.NumberFormat().format(parseFloat(result[i].price))+'</span></td>'
             student +='<td data-label="Quantity" class="ec-cart-pro-qty" style="text-align: center;">'
             student +='<div class="cart-qty-plus-minus"> <input class="cart-plus-minus" style="width: 100%;" type="number" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" oninput="this.value = Math.abs(this.value)" min="1"  maxlength="3" onkeyup="' + "cartpricechnage(this,'" + result[i].id + "'," + i + "," + result[i].price + ",'cart')" + '"' + 'onchange="' + "cartpricechnage(this,'" + result[i].id + "'," + i + "," + result[i].price + ",'cart')" + '" value="' + result[i].quantity + '" /></div>'

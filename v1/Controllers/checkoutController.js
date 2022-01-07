@@ -101,9 +101,13 @@ function load() {
             products += '</div>';
 
             products += '<div class="ec-pro-content">';
-            products += '<h5 class="ec-pro-title"><a href="'+window.location.origin+'/products/'+json[i].id+'" target="_blank">' + json[i].name + '</a></h5>';
+            products += '<h5 class="ec-pro-title"><a href="'+window.location.origin+'/products/'+json[i].old_id+'" target="_blank">' + json[i].name + '</a></h5>';
             products += '<span class="ec-price">';
-            products += '<span class="new-price">PKR: ' + new Intl.NumberFormat().format(parseFloat(json[i].price)) + '</span>';
+            products += '<span class="new-price">'
+            if(json[i].size !='')
+            products += 'Size: ('+json[i].size+')<br>';
+            products += 'PKR: ' + new Intl.NumberFormat().format(parseFloat(json[i].price)) + '</span>';
+            
             products += '</span>';
          
             products += '<div class="qty-plus-minus"><input type="number" class="qty-input" style="width: 80px;height:30px;border: 1px solid #eeeeee;" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" oninput="this.value = Math.abs(this.value)" min="1"  maxlength="3" onkeyup="' + "cartpricechnage(this,'" + json[i].id + "'," + i + "," + json[i].price + ",'checkout')" + '"' + 'onchange="' + "cartpricechnage(this,'" + json[i].id + "'," + i + "," + json[i].price + ",'checkout')" + '" value="' + json[i].quantity + '">';

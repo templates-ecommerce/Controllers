@@ -32,8 +32,7 @@ try {
 
         var toprice = 0;
         var categories = [];
-        function Check(ids, title, dec, price, img, qty) {
-
+        function Check(ids, title, dec, price, img, qty,old_id,size) {
 
             const oldItems = JSON.parse(localStorage.getItem('itemsArray')) || [];
             const idToUse = ids;
@@ -46,6 +45,8 @@ try {
                     'dec': decodeURIComponent(dec).replaceAll('+', ' '),
                     'img': img,
                     'user_id': ueres_id,
+                    'old_id': old_id,
+                    'size':size,
                 })
             } else {
                 const newItem = {
@@ -56,6 +57,8 @@ try {
                     'dec': decodeURIComponent(dec).replaceAll('+', ' '),
                     'img': img,
                     'user_id': ueres_id,
+                    'old_id': old_id,
+                    'size':size,
                 };
                 oldItems.push(newItem);
             }

@@ -14,20 +14,25 @@ function cardload()
         toprice = 0;
         var student = '';
         if(result.length){
-            $('#imgaddtocartremove').hide();
+            $('.imgaddtocartremove').hide();
         }
         else{
-            $('#imgaddtocartremove').show();
+            $('.imgaddtocartremove').show();
         }
         for (i = 0; i < result.length; i++) {
             // console.log(json[i]);
             count++;
             student +='<li>'
-            student +='<a href="'+window.location.origin+'/products/'+result[i].id+'" target="_blank" class="sidekka_pro_img">'
+            student +='<a href="'+window.location.origin+'/products/'+result[i].old_id+'" target="_blank" class="sidekka_pro_img">'
             student +='<img src="' + result[i].img + '" alt="' +result[i].name + '"></a>'
             student +='<div class="ec-pro-content">'
-            student +='<a href="'+window.location.origin+'/products/'+result[i].id+'" target="_blank" class="cart_pro_title">' +result[i].name + '</a>'
-            student +='<span class="cart-price"><span>'+new Intl.NumberFormat().format(parseFloat(result[i].price))+'</span></span>'
+            student +='<a href="'+window.location.origin+'/products/'+result[i].old_id+'" target="_blank" class="cart_pro_title">' +result[i].name + '</a>'
+            
+            student +='<span class="cart-price"><span>';
+            if(result[i].size !='')
+            student +='Size: ('+result[i].size+')<br>'
+            student +=new Intl.NumberFormat().format(parseFloat(result[i].price))+'</span></span>'
+            
             student +='<div class="qty-plus-minus">'
       
             student +='<input class="qty-input" style="width: 100%;" type="number" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" oninput="this.value = Math.abs(this.value)" min="1"  maxlength="3" onkeyup="' + "cartpricechnage(this,'" + result[i].id + "'," + i + "," + result[i].price + ")" + '"' + 'onchange="' + "cartpricechnage(this,'" + result[i].id + "'," + i + "," + result[i].price + ")" + '" value="' + result[i].quantity + '" />'

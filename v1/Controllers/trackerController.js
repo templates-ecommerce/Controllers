@@ -126,7 +126,7 @@ function onloadertrack(){
     
         toast.error("No order(s) found, please try again");
         var emt = '<tr>';
-        emt += '<td colspan="6"><img src="https://img.freepik.com/free-photo/empty-miniature-shopping-trolley-near-torn-paper-piece-against-colored-backdrop_23-2147943585.jpg" height="200px" width="100%"/></td>';
+        emt += '<td colspan="5" class="text-center"><img src="/images/tracker.jpg" style="height: 250px;padding-top: 70px;"/><p style="margin-top: -15px;padding-bottom: 110px;">You can track your orders here!</p></td>';
         emt += '</tr>'
         $('#tabrownode').html(emt);
 
@@ -153,7 +153,7 @@ toast.configure(options);
 
 toast.error("No order(s) found, please try again");
 var emt = '<tr>';
-emt += '<td colspan="6"><img src="https://img.freepik.com/free-photo/empty-miniature-shopping-trolley-near-torn-paper-piece-against-colored-backdrop_23-2147943585.jpg" height="200px" width="100%"/></td>';
+emt += '<td colspan="5" class="text-center"><img src="/images/tracker.jpg" style="height: 250px;padding-top: 70px;"/><p style="margin-top: -15px;padding-bottom: 110px;">You can track your orders here!</p></td>';
 emt += '</tr>'
 $('#tabrownode').html(emt);
 }

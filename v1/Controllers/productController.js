@@ -4,8 +4,7 @@ if(pagesnames == 'product')
 {
   var pagenames = null;
 var toprice = 0;
-function Check(id, title, dec, price, img, qty) {
-
+function Check(id, title, dec, price, img,qty,old_id,size) {
 
   const oldItems = JSON.parse(localStorage.getItem('itemsArray')) || [];
   const idToUse = id;
@@ -18,6 +17,8 @@ function Check(id, title, dec, price, img, qty) {
       'dec': decodeURIComponent(dec).replaceAll('+',' '),
       'img': img,
       'user_id': ueres_id,
+      'old_id': old_id,
+      'size':size,
     })
   } else {
     const newItem = {
@@ -28,6 +29,8 @@ function Check(id, title, dec, price, img, qty) {
       'dec': decodeURIComponent(dec).replaceAll('+',' '),
       'img': img,
       'user_id': ueres_id,
+      'old_id': old_id,
+      'size':size,
     };
     oldItems.push(newItem);
   }

@@ -43,7 +43,7 @@ $(document).ready(function () {
         $.ajax({
             url: Encryptionsuccess(),
             success: function () {
-
+                whatsappcheck()
                 checkoutsloadallows(AccessKey, subdomain);
                 invoiceonloader();
                 dashboardonloader();
@@ -201,6 +201,14 @@ function enforce_maxlength(event) {
   // I put the listener on the body, put it on whatever.
   document.body.addEventListener('input', enforce_maxlength);
 
+  
+  function whatsappcheck()
+  {
+      if(social_mobile==null)
+      $('.whatsappcheck').hide();
+      else if(social_mobile=="")
+      $('.whatsappcheck').hide();
+  }
 
   function whatsapp(id,name)
 {

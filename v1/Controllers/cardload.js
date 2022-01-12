@@ -15,9 +15,11 @@ function cardload()
         var student = '';
         if(result.length){
             $('.imgaddtocartremove').hide();
+            $('#imgaddtocartremove').hide();
         }
         else{
             $('.imgaddtocartremove').show();
+            $('#imgaddtocartremove').show();
         }
         for (i = 0; i < result.length; i++) {
             // console.log(json[i]);

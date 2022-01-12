@@ -509,12 +509,20 @@ function onchacity() {
     $('#sutotle').text(new Intl.NumberFormat().format(parseFloat(sutotle) - parseFloat($('#deliveypriceset').val())))
 
     if ($('#shippingtrue').is(":checked")) {
-        if ($('#s_citys :selected').data("miniorder") != null) {
-            if (parseFloat($('#s_citys :selected').data("miniorder")) <= parseFloat(subtot)) {
+         
+            if ($('#s_citys :selected').data("miniorder") != null) {
+                if ($('#s_citys :selected').data("miniorder") == '0') {
+                    $('#delivery_price').text(new Intl.NumberFormat().format(parseFloat($('#s_citys :selected').data("price"))));
+                    $('#deliveypriceset').val(parseFloat($('#s_citys :selected').data("price")));
+                    $('#cityidset').val($('#s_citys :selected').data("cityid"));
+                 }
+            
+            else if (parseFloat($('#s_citys :selected').data("miniorder")) <= parseFloat(subtot)) {
                 $('#delivery_price').text(new Intl.NumberFormat().format(0));
                 $('#deliveypriceset').val(0);
                 $('#cityidset').val($('#s_citys :selected').data("cityid"));
             }
+            
             else {
                 $('#delivery_price').text(new Intl.NumberFormat().format(parseFloat($('#s_citys :selected').data("price"))));
                 $('#deliveypriceset').val(parseFloat($('#s_citys :selected').data("price")));
@@ -549,7 +557,12 @@ function onchacity() {
 
     else {
         if ($('#citys :selected').data("miniorder") != null) {
-            if (parseFloat($('#citys :selected').data("miniorder")) <= parseFloat(subtot)) {
+            if ($('#citys :selected').data("miniorder") == '0') {
+                $('#delivery_price').text(new Intl.NumberFormat().format(parseFloat($('#citys :selected').data("price"))));
+                $('#deliveypriceset').val(parseFloat($('#citys :selected').data("price")));
+                $('#cityidset').val($('#citys :selected').data("cityid"));
+             }
+            else if (parseFloat($('#citys :selected').data("miniorder")) <= parseFloat(subtot)) {
                 $('#delivery_price').text(new Intl.NumberFormat().format(0));
                 $('#deliveypriceset').val(0);
                 $('#cityidset').val($('#citys :selected').data("cityid"));
@@ -596,7 +609,12 @@ function valueChanged() {
     if ($('#shippingtrue').is(":checked")) {
         $("#shippinghidediv").show();
         if ($('#s_citys :selected').data("miniorder") != null) {
-            if (parseFloat($('#s_citys :selected').data("miniorder")) <= parseFloat(subtot)) {
+            if ($('#s_citys :selected').data("miniorder") == '0') {
+                $('#delivery_price').text(new Intl.NumberFormat().format(parseFloat($('#s_citys :selected').data("price"))));
+                $('#deliveypriceset').val(parseFloat($('#s_citys :selected').data("price")));
+                $('#cityidset').val($('#s_citys :selected').data("cityid"));
+             }
+           else if (parseFloat($('#s_citys :selected').data("miniorder")) <= parseFloat(subtot)) {
                 $('#delivery_price').text(new Intl.NumberFormat().format(0));
                 $('#deliveypriceset').val(0);
                 $('#cityidset').val($('#s_citys :selected').data("cityid"));
@@ -617,7 +635,12 @@ function valueChanged() {
     else {
         $("#shippinghidediv").hide();
         if ($('#citys :selected').data("miniorder") != null) {
-            if (parseFloat($('#citys :selected').data("miniorder")) <= parseFloat(subtot)) {
+            if ($('#citys :selected').data("miniorder") == '0') {
+                $('#delivery_price').text(new Intl.NumberFormat().format(parseFloat($('#citys :selected').data("price"))));
+                $('#deliveypriceset').val(parseFloat($('#citys :selected').data("price")));
+                $('#cityidset').val($('#citys :selected').data("cityid"));
+             }
+            else if (parseFloat($('#citys :selected').data("miniorder")) <= parseFloat(subtot)) {
                 $('#delivery_price').text(new Intl.NumberFormat().format(0));
                 $('#deliveypriceset').val(0);
                 $('#cityidset').val($('#citys :selected').data("cityid"));

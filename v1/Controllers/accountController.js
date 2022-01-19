@@ -65,7 +65,7 @@ if(pagenames == "account")
       var pass = null;
       
 
-      if(accountname == "loginallow" )
+      if(typeof accountname == 'undefined' ? null : accountname  == "loginallow" )
       {
         loginaccount(id,fname,email, pass, mode)
       }

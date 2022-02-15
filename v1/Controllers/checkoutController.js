@@ -388,7 +388,7 @@ function adddata() {
         'payment_method': 'cash',
         'transaction_id': '1001',
         'date_paid': yyyy + '-' + mm + '-' + dd,
-        'status': 'pending',
+        'status': '1',
 
         Billing: {
             'name': name,

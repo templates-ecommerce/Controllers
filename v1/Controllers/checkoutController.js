@@ -374,7 +374,7 @@ function adddata() {
     // alert(useragent)
     eOrderInput = {
         'order_key': ouuid,
-        'storeKey': localStorage.Store
+        'storeKey': localStorage.Store,
         "date_created": yyyy + '-' + mm + '-' + dd,
         "date_modified": yyyy + '-' + mm + '-' + dd,
         'created_via': 'ecommerce',

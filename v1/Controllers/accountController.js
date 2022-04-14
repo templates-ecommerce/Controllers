@@ -5,7 +5,7 @@ try {
 // Your web app's Firebase configuration
     var firebaseConfig = {
 apiKey: "AIzaSyAxdMRbp7vzLQCL9596Vlugb42LpBAnhSk",
-  authDomain: "eralive-b4e71.firebaseapp.com",
+  authDomain: "login.eralive.net",
   projectId: "eralive-b4e71",
   storageBucket: "eralive-b4e71.appspot.com",
   messagingSenderId: "358101573616",

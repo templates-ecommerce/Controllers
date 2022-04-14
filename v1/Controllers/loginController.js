@@ -83,7 +83,7 @@ if (pagenames == "account") {
                     var toast = new Toasty(options);
                     toast.configure(options);
 
-                    toast.error(JSON.parse(response)[0].Error);
+                    toast.error("Could not sign you in! Please try again...");
                 }
                 $('#ec-overlay').hide()
             },

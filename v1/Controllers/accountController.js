@@ -23,9 +23,9 @@ if(pagenames == "account")
   $('.noneDashboard').addClass('d-none')
 
 
-  let Googleprovider = new firebase.auth.GoogleAuthProvider()
+  let Googleprovider = new firebase.auth.GoogleAuthProvider(); Googleprovider.addScope('email');
   let fbprovider = new firebase.auth.FacebookAuthProvider()
-
+fbprovider.addScope('email');
   function GoogleLogin() {
     console.log('Login Btn Call')
     firebase.auth().signInWithPopup(Googleprovider).then(res => {

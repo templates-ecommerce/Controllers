@@ -4,13 +4,13 @@ try {
 
 // Your web app's Firebase configuration
     var firebaseConfig = {
-      apiKey: "AIzaSyDkjke06pLb_N3hRITZi3I9WpmCoOIzIbA",
-      authDomain: "login.eralive.net",
-      projectId: "login-3c236",
-      storageBucket: "login-3c236.appspot.com",
-      messagingSenderId: "335202469896",
-      appId: "1:335202469896:web:787dada04fb295675aa9bd",
-      measurementId: "G-W93PH9CPK9"
+      apiKey: "AIzaSyAxpGOK4UbFkhYoEwNaJigHJwoqlguyttk",
+  authDomain: "loginapp-d33fc.firebaseapp.com",
+  projectId: "loginapp-d33fc",
+  storageBucket: "loginapp-d33fc.appspot.com",
+  messagingSenderId: "564351243090",
+  appId: "1:564351243090:web:fcdc27d9673db85e81608b",
+  measurementId: "G-P1B40C6NGN"
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);

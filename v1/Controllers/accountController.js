@@ -4,13 +4,13 @@ try {
 
 // Your web app's Firebase configuration
     var firebaseConfig = {
-apiKey: "AIzaSyDkjke06pLb_N3hRITZi3I9WpmCoOIzIbA",
+  apiKey: "AIzaSyDkjke06pLb_N3hRITZi3I9WpmCoOIzIbA",
   authDomain: "login-3c236.firebaseapp.com",
   projectId: "login-3c236",
   storageBucket: "login-3c236.appspot.com",
   messagingSenderId: "335202469896",
-  appId: "1:335202469896:web:787dada04fb295675aa9bd",
-  measurementId: "G-W93PH9CPK9"
+  appId: "1:335202469896:web:990788fa9620fde75aa9bd",
+  measurementId: "G-0TS8GY2XG6"
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);

@@ -166,7 +166,7 @@ if (pagenames == "account") {
                     var toast = new Toasty(options);
                     toast.configure(options);
 
-                    toast.error(response);
+                    toast.error("Could not sign you in! Please try again...");
                 }
                 $('#ec-overlay').hide()
             },

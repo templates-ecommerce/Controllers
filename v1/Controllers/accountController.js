@@ -27,15 +27,16 @@ if(pagenames == "account")
   let fbprovider = new firebase.auth.FacebookAuthProvider()
 fbprovider.addScope('email');
   function GoogleLogin() {
-    console.log('Login Btn Call')
+//     console.log('Login Btn Call')
     firebase.auth().signInWithPopup(Googleprovider).then(res => {
-      console.log(res.user)
+//       console.log(res.user.providerData[0])
+      var datafb =res.user.providerData[0];
       // document.getElementById('LoginScreen').style.display = "none"
       $('.noneDashboard').removeClass('d-none')
       mode= "Google";
-      var id = res.user.uid;
-      var fname = res.user.displayName;
-      var email = res.user.email;
+      var id =datafb.uid;
+      var fname = datafb.displayName;
+      var email = datafb.email;
       var phone = null;
       var pass = null;
       
@@ -55,11 +56,12 @@ fbprovider.addScope('email');
   function fbLogin() {
     console.log('Login Btn Call')
     firebase.auth().signInWithPopup(fbprovider).then(res => {
-      console.log(res.user)
+//       console.log(res.user)
+      var datagl =res.user.providerData[0];
       mode= "Facebook";
-      var id = res.user.uid;
-      var fname = res.user.displayName;
-      var email = res.user.email;
+      var id = datagl.uid;
+      var fname = datagl.displayName;
+      var email = datagl.email;
       var phone = null;
       var pass = null;
       
